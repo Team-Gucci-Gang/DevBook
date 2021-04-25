@@ -38,14 +38,14 @@ Whether you use this project, have learned something from it, or just like it, p
 - You might want to look into `config/index.js` to make change the port you want to use.
 
 - Create a file called `s3_config.json` under the `config` folder and add your AWS-S3 configuration to it (required for static content)
-
+```
 json
 {
   "accessKeyId": "your_access_key_id",
   "secretAccessKey": "your_secret_access_key",
   "region": "your_aws_region"
 }
-
+```
 
 - Copy .env.example file and populate the required environment variables
 
