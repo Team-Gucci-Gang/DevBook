@@ -1,0 +1,126 @@
+<style>
+  .btn:focus {
+    outline: none !important;
+  }
+</style>
+<script src="https://unpkg.com/darkreader"></script>
+<script src="/javascripts/darkreader.min.js"></script>
+<!-- <script>
+  if(!localStorage.nightMode) {
+      localStorage.nightMode = "off";
+  } else {
+    toggleNight(true);
+  }
+  $("#darkmode").on("click", toggleNight);
+  function toggleNight(force) {
+    console.log(localStorage.nightMode)
+    if(localStorage.nightMode == "on" && force != true) {
+      console.log("Disable")
+      DarkReader.disable();
+      localStorage.nightMode = "off";
+    } else {
+      console.log("Enable")
+      DarkReader.enable();
+      localStorage.nightMode = "on";
+    }
+  }
+</script> -->
+<script>
+  console.log(window.location.href);
+  if (
+    window.location.href.split("?logged-in") &&
+    window.location.href.split("?logged-in").length > 1
+  ) {
+    show_notification("Hello, World!");
+    window.history.pushState(null, null, window.location.pathname);
+  }
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isLightMode = window.matchMedia("(prefers-color-scheme: light)")
+    .matches;
+  const isNotSpecified = window.matchMedia(
+    "(prefers-color-scheme: no-preference)"
+  ).matches;
+  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified;
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addListener((e) => e.matches && toggleNight(true));
+  window
+    .matchMedia("(prefers-color-scheme: light)")
+    .addListener((e) => e.matches && toggleNight(false));
+  if (isDarkMode) toggleNight(true);
+  if (isLightMode && !localStorage.nightMode) toggleNight(false);
+  if (
+    ((isNotSpecified || hasNoSupport) && !localStorage.nightMode) ||
+    (isLightMode && localStorage.nightMode) ||
+    localStorage.nightMode == "off"
+  ) {
+    console.log(
+      "You specified no preference for a color scheme or your browser does not support it."
+    );
+    now = new Date();
+    hour = now.getHours();
+    if (localStorage.nightMode == "on") toggleNight(true);
+  }
+  $("#darkmode").on("click", toggleNight);
+  function toggleNight(force = undefined) {
+    force =
+      force == undefined || typeof force == "object"
+        ? localStorage.nightMode != "on"
+        : force;
+    console.log("FORCE: " + force);
+    console.log(localStorage.nightMode);
+    if (force == false || force != true) {
+      console.log("Disable");
+      DarkReader.disable();
+      localStorage.nightMode = "off";
+    } else {
+      console.log("Enable");
+      DarkReader.enable();
+      localStorage.nightMode = "on";
+    }
+  }
+</script>
+<style>
+  a {
+    color: #7f3b42;
+  }
+</style>
+<div>
+  <footer
+    class="page-footer font-small pt-4 bg-white container"
+    style="margin-bottom: 5%; color: #e2f398 !important"
+  >
+    <div class="container-fluid text-center text-md-left">
+      <hr class="clearfix w-100 d-md-none pb-3" />
+      <div class="row" style="margin-top: 2%">
+        <div class="col-md-6 mt-md-0 mt-3 mr-0">
+          <!-- <img src="/images/logo/logo.png" height="100px" /> -->
+          <h2 class="text-bold"><a href="/">Devbook</a></h2>
+          <p>Fueling the <a>developers</a></p>
+        </div>
+        <div class="col-md-3 mt-md-0 mt-3">
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://github.com/Team-Gucci-Gang">Github</a>
+            </li>
+            <li>
+              <a href="https://github.com/Team-Gucci-Gang/DevBook">Github Repo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="footer-copyright text-center py-3">
+      ©
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      Copyright
+      <a href="https://vidhimody.me" target="_blank"> Vidhi Mody</a>,
+      <a href="https://sohamp.dev/" target="_blank"> Soham Parekh</a>
+    </div>
+  </footer>
+</div>

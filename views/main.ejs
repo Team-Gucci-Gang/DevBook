@@ -1,0 +1,105 @@
+
+<div class="column col-xs-12 col-sm-9 col-lg-10" style="margin:auto" id="main">
+   <% for(var y=0;y<events.length;y++) { %>
+  <ul class="list-group" style="background-color:black;background-image: url('<%= events[y].img %>');background-size: cover;background-repeat: no-repeat;border-radius:10px;">
+    <li class="list-group-item list-group-item-primary" style="background: transparent; color:#fff;">
+        <h3><%- events[y].title %></h3>
+      <h4><%- events[y].text %></h4>
+     <a class="float-right" style="color:#fff"  href="<%= events[y].link.link_url %>"><%= events[y].link.link_text %></a> <br>
+     </li>
+    
+  </ul>
+ <% } %>
+ <div class="row">
+   <div class="col-md-4">
+        <button style="width:100%; margin-top:2%" class="sort-btn btn btn-primary nav-link active"><i class="fa fa-home mr-2"></i> Feed</buttons>
+   </div>
+   <div class="col-md-4" style="margin-bottom: 2%;">
+      <button style="width:100%; margin-top:2%" class="sort-btn btn btn-primary nav-link"><i class="fa fa-chart-bar mr-2"></i> Top</button>
+   </div>
+ </div>
+
+ <ul class="list-group">
+  <li class="list-group-item list-group-item-primary">
+    <img src="<%= user.profile_picture %>?cache=<%= Math.random() %>" class="gram-card-user-image">
+     <a class="gram-card-user-name" href="/me"> @<%= user.username %>'s Dashboard</a> <br>
+     </li>
+ </ul>
+ <div id="posts">
+  <% for(var post of postList) { %>
+  <div class="gram-card">
+    <div class="gram-card-header">
+      <img src="<%= post.author.profile_picture %>" class="gram-card-user-image lozad">
+      <a class="gram-card-user-name" href="/u/@<%= post.author.username %>"><%= post.author.username %></a>
+
+            <div class="dropdown gram-card-time">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-option-vertical"></i></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="<%= post.post.static_url %>"><i class="fa fa-share"></i> View</a></li>
+                <% if(post.author.username == user.username) { %>
+                  <li><a href="/me/post/<%= post.post._id %>"><i class="fa fa-cog"></i> Edit</a></li>
+                  <li><a href="/me/post/delete/<%= post.post._id %>"><i class="fa fa-trash"></i> Delete</a></li>
+                <% } %>
+              </ul>
+              </div>
+              <div class="time"><%= post.post.timeago %></div>
+    </div>
+    <br>
+    <br>
+    <div class="gram-card-image">
+      <% if (post.post.code ) { %>
+        <pre style="margin:5px;"><code class="language-<%= post.post.lang %>"><%= post.post.code %></code></pre>
+      <% } %>
+      <% if(post.post.static_url) { %>
+      <center>
+      <% if(['png','jpeg','jpg','gif','svg'].indexOf(post.post.type) >= 0) { %>
+        <a href="<%= post.post.static_url %>" class="progressive replace">
+            <img author="<%= post.post.author %>" src="" id="<%= post.post._id %>" class="post img-responsive lozad preview">
+        </a>   
+      <% } else if(['pdf','docx','txt'].indexOf(post.post.type) >= 0) { %>
+          <iframe src="<%= post.post.static_url %>">
+              <img author="<%= post.post.author %>" src="" id="<%= post.post._id %>" class="post img-responsive lozad preview">
+          </iframe> 
+      <% } else if(['mp3','wav','ogg','mpeg'].indexOf(post.post.type) >= 0) { %>
+            <audio controls width="50%;">
+                <source src="<%= post.post.static_url %>">
+            </audio>         
+      <% } else { %>
+      <video author="<%= post.post.author %>" src="<%= post.post.static_url %>" id="<%= post.post._id %>" class="post img-responsive" controls></video>
+      <% } %>
+      </center>
+      <% } %>
+    </div>
+    <div class="gram-card-content">
+
+      <p><a style="color:indianred;" class="gram-card-content-user" href="/u/@<%= post.post.author %>"><%= post.post.author %></a>
+        <%= post.post.caption %>
+        <span class="label label-info"><%= post.post.category %></span>
+
+     </p>
+      <p class="comments"><%= post.post.comments.length %> comment(s).</p>
+      <br>
+      <div class="comments-div" id="comments-<%= post.post._id %>">
+        <div>
+          <% for(var c=0;c<post.post.comments.length;c++) { %>
+          <a class="user-comment" href="/u/@<%= post.post.comments[c].by %>">
+          <%= post.post.comments[c].by %>
+        </a>
+        <%= post.post.comments[c].text %>
+        <br>
+        <% } %>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="gram-card-footer">
+      <button data="post.post.likes" <% if(post.post.likes.includes(user.username)) { %> disabled <% } %>onclick="this.innerHTML =  '<i class=\'glyphicon glyphicon-thumbs-up\'></i> ' + (parseInt(<%= post.post.likes.length %>) + 1); this.disabled = true;" class="footer-action-icons likes btn btn-link non-hoverable like-button-box" author="<%= post.post.author %>" id="<%= post.post._id %>-like">
+        <i class="glyphicon glyphicon-thumbs-up"></i> <%= post.post.likes.length %></button>
+
+      <input id="<%= post.post._id %>" class="comments-input comment-input-box" author="<%= post.author.username %>" commentby="<%= user.username %>"  type="text" id="comment" placeholder="Click enter to comment here..."/>
+
+    </div>
+  </div>
+  <% } %>
+ </div>
+  </div>

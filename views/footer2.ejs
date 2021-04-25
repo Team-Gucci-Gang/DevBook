@@ -1,0 +1,69 @@
+<style>
+  .btn:focus {
+    outline: none !important;
+  }
+</style>
+<script src="https://unpkg.com/darkreader"></script>
+<script>
+  if (!localStorage.nightMode) {
+    localStorage.nightMode = "off";
+  } else {
+    toggleNight(true);
+  }
+  $("#darkmode").on("click", toggleNight);
+  function toggleNight(force) {
+    console.log(localStorage.nightMode);
+    if (localStorage.nightMode == "on" && force != true) {
+      console.log("Disable");
+      DarkReader.disable();
+      localStorage.nightMode = "off";
+    } else {
+      console.log("Enable");
+      DarkReader.enable();
+      localStorage.nightMode = "on";
+    }
+  }
+</script>
+<style>
+  a {
+    color: #7f3b42;
+  }
+</style>
+<!-- <footer
+  class="page-footer font-small pt-4 bg-white container"
+  style="margin-bottom:5%; color: #e2f398!important"
+>
+  <div class="container-fluid text-center text-md-left">
+    <hr class="clearfix w-100 d-md-none pb-3" />
+    <div class="row" style="margin-top:2%">
+      <div class="col-md-6 mt-md-0 mt-3 mr-0">
+        <img src="/images/logo/logo.png" height="100px" />
+        <h2 class="text-bold"><a href="/">Devbook</a></h2>
+        <p>
+          Stationed for the <a href="#">developers</a>
+        </p>
+      </div>
+      <div class="col-md-3 mt-md-0 mt-3">
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://github.com/Team-Gucci-Gang">Github</a>
+          </li>
+          <li>
+            <a href="https://github.com/Team-Gucci-Gang/DevBook">Github Repo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="footer-copyright text-center py-3">
+    ©
+    <script>
+      document.write(new Date().getFullYear());
+    </script>
+    Copyright
+    <a href="#"> Soham Parekh</a>
+  </div>
+</footer> -->

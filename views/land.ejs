@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') -%>
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/moment.css" />
+
+  <link
+    type="text/css"
+    rel="stylesheet"
+    media="screen"
+    href="/animations/jquery-sakura.min.css"
+  />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/ns-default.css" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="/stylesheets/ns-style-other.css"
+  />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="/stylesheets/progressive-image.css"
+  />
+  <script src="/javascripts/modernizr.custom.js"></script>
+  <script src="/javascripts/progressive-image.js"></script>
+  <body>
+    <!-- <div id="particles-js"></div> -->
+    <%- include('navbar') -%>
+    <div class="landing-main">
+    <div class="view" style="background-image: url('/images/station.gif'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      
+      <div class="mask rgba-black-light align-items-center">
+        
+        <div class="container">
+          
+          <div class="row">
+            
+            <div class="col-md-12 mb-4 white-text text-center">
+              <!-- <img src="/images/logo/logo.png" width="200"><br> -->
+              <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5" ><strong>Devbook</strong></h1>
+              <hr class="hr-light my-4" >
+              <h5 class="text-uppercase mb-4 white-text front-text" style="width: 50%">
+                <strong>
+                  Devbook serves to provide a common platform for developers and open-source organizations to connect.
+                </strong>
+              </h5>
+              <a class="btn btn-primary" href="/auth/github" style="background-color:#7f3b42;">Log in with Github</a>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </header>
+  
+  
+    </div>
+    <%- include('footer') -%>
+    <div id="notify_message" class="notify_message-success"></div>
+  </body>
+
+  
+  <script src="/animations/jquery-sakura.min.js"></script>
+  <script src="javascripts/classie.js"></script>
+  <!-- <script type="text/javascript" src="/javascripts/particles.min.js"></script> -->
+  <!-- <script>
+    particlesJS("particles-js", {
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: false
+          },
+          onclick: {
+            enable: false
+          },
+          resize: true
+        }
+      },
+      events: {
+        onresize: {
+          enable: true,
+          density_auto: true,
+          density_area: 400 // nb_particles = particles.nb * (canvas width *  canvas height / 1000) / density_area
+        },
+        onclick: {
+          enable: false
+        }
+      },
+      particles: {
+        number: { value: 25, density: { enable: true, value_area: 800 } },
+        color: { value: ["#f9f8eb", "#76b39d", "#155263", "#f0b917"] },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#fff" },
+          polygon: { nb_sides: 5 }
+        },
+        opacity: {
+          value: 0.7,
+          random: false,
+          anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        line_linked: {
+          enable: false
+        },
+        size: {
+          value: 40,
+          random: true,
+          anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: true,
+          attract: { enable: false, rotateX: 600, rotateY: 1200 }
+        }
+      },
+      retina_detect: true
+    });
+  </script> -->
+</html>

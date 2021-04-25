@@ -1,0 +1,63 @@
+<div
+  class="container-fluid navbar-fixed-top box-shadow switch-gradient"
+  style="
+    background-color: transparent;
+    margin-bottom: 2rem;
+    border: none;
+    position: sticky;
+  "
+>
+  <% if(user && !user.email) { %>
+  <div class="alert alert-info alert-dismissible" role="alert">
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+      <span aria-hidden="true">×</span>
+    </button>
+    <p>
+      You have not provided an email for your account, click<a
+        href="/me/settings"
+        target="_blank"
+      >
+        here</a
+      >
+      to provide one for your account.
+    </p>
+  </div>
+  <% } %>
+  <div class="float-left black" href="/">
+    <a href="/">
+      <h2 class="white">
+        <img src="/images/logo/logo.png" class="logo" />
+        <span class="white one-day openfuel">Devbook</span>
+      </h2>
+    </a>
+  </div>
+  <% if(user) { %>
+  <div class="float-right">
+    <div style="display: inline">
+      <a href="/me">
+        <img
+          width="50"
+          style="border-radius: 50%"
+          src="<%= user.profile_picture %>"
+        />
+      </a>
+    </div>
+    <a href="/u" class="btn btn-link hidden-xs margin-top-20">
+      <i class="fa fa-lg fa-search pills"></i>
+    </a>
+    <% if(where == "/") { %>
+    <button
+      style="outline: none"
+      type="button"
+      class="btn btn-link margin-top-20"
+      id="sidebarToggle"
+    >
+      <i class="fa fa-lg fa-align-left pills"></i>
+    </button>
+    <% } %>
+    <button id="darkmode" class="btn btn-link margin-top-20">
+      <i class="fa fa-moon fa-align-left pills"></i>
+    </button>
+  </div>
+  <% } %>
+</div>
