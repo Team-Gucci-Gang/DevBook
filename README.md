@@ -27,7 +27,7 @@ Whether you use this project, have learned something from it, or just like it, p
 - Follow users with similar profiles
 - Search users by the programming languages they know
 - Chat with users in real-time
-- Get notified for upcoming Fellowship events
+- Get notified for upcoming events
 
 ---
 
